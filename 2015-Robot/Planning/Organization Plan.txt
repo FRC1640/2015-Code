@@ -1,0 +1,17 @@
+AUTON:
+	- Scripting
+		-Interpretation and reading
+TELEOP:
+	- Read Joysticks
+
+PT:
+	- Drive Code
+		- Gyro
+		- Holo Drive
+		- Drive Core
+		- Encoders
+	- Lift Code
+		- State Machine
+			- Intake/Eject
+		- Lift Movement
+		- Limit Switch Handling

@@ -1,0 +1,10 @@
+;Lift Test
+Lift 0 0.5
+Delay 2
+Lift 1 0.5
+Delay 2
+Lift 2 0.5
+Delay 2
+Lift 4 0.5
+Delay 2
+Lift 6 0.5

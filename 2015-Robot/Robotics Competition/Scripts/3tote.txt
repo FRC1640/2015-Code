@@ -1,0 +1,7 @@
+Delay 1 0 0 0 0
+Lift 1 1 0 0 0
+Drive 0.75 0 30 0 0
+Intake 2 2 0 0 0
+Lift 6 1 0 0 0
+Drive 0.75 180 30 0 0
+Drive 0.75 270 78 0 0 

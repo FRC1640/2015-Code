@@ -1,0 +1,7 @@
+Delay 0.28
+Drive 1 180 100 0 0
+CanGrabber 2
+Drive 0.5 0 30 0 0
+Drive 0.5 180 30 0 0
+Drive 0.5 0 30 0 0
+Drive 0.5 180 30 0 0

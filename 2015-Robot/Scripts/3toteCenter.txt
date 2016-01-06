@@ -1,0 +1,21 @@
+Intake 1 0.1
+Drive 0.2 0 2 45 
+Delay 0.5 
+Drive 0.2 0 2 0 0
+Intake 2 0.5
+DriveAndLift 0.75 0 65 0 2
+Intake 1 0.1
+Drive 0.2 0 2 45 0
+Delay 0.5 
+Drive 0.2 0 2 0 0
+Drive 0.25 0 32 0 3
+Intake 2 0.5
+CanSmacker 0
+DriveAndLift 0.65 0 77 0 6
+Intake 2 0.5
+Intake 1 0.1
+DriveAndIntake 1 105 140 90 2
+Lift 0
+DriveAndIntake 1 270 30 90 3
+Intake 3 2
+

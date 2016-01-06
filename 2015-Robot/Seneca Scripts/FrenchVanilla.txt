@@ -1,0 +1,4 @@
+Delay 5
+Lift 2
+Drive 1 0 50
+Intake 2 2

@@ -1,0 +1,22 @@
+Drive -0.75 0 115 0 0
+Delay 0.25
+Drive 0.75 0 3 0 0 
+Delay 0.25
+Drive 0.75 0 50 0 0
+Drive 0.40 0 54 0 0
+Delay 0.25
+Drive 0.75 90 3 0 0
+Delay 0.5
+Drive 0.75 70 3 0 0
+Delay 0.5
+Drive 0.75 90 3 0 0
+Delay 0.5
+Drive 0.62 90 70 0 0
+Delay 0.5
+Drive -0.75 0 3 0 0
+Delay 0.5
+Drive -0.75 10 3 0 0
+Delay 0.5
+Drive -0.75 0 3 0 0
+Delay 0.25
+Drive -0.75 0 120 0 0
