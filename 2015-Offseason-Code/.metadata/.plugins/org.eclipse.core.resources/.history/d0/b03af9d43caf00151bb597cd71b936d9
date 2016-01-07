@@ -1,0 +1,36 @@
+package com.team1640;
+
+
+public class Match {
+	private int matchNum;
+	private MatchData [] data;
+	
+	public static final int RED_1 = 0, RED_2 = 1, RED_3 = 2, BLUE_1 = 3, BLUE_2 = 4, BLUE_3 = 5;
+	
+	public Match() {
+		matchNum = 0;
+		data = new MatchData[6];
+	}
+	
+	public Match(int matchNum) {
+		this.matchNum = matchNum;
+		data = new MatchData[6];
+	}
+	
+	public int getMatchNum() {
+		return matchNum;
+	}
+	
+	public void setData(int colorNum, int teamNum, int cans, int totes) {
+		MatchData matchData = data[colorNum];
+		matchData.set(MatchData.COLOR_NUM, colorNum);
+		matchData.set(MatchData.TEAM_NUM, teamNum);
+		matchData.set(MatchData.CANS, cans);
+		matchData.set(MatchData.TOTES, totes);
+	}
+	
+	public void removeTeam(int colorNum) {
+		matchTeamList[colorNum] = new Team();
+	}
+	
+}

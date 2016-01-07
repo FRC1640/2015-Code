@@ -1,0 +1,31 @@
+package com.team1640;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+
+public class MatchView extends JPanel{
+
+	private static final long serialVersionUID = 1L;
+	
+	private Main main;
+
+	public MatchView(Main m) {
+		
+		main = m;
+		
+		setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
+		setLayout(new BorderLayout(5, 5));
+		
+		MainViewSidePanel sidePanel = new MainViewSidePanel(main);
+		sidePanel.setMinimumSize(new Dimension(0, 0));
+		MainViewSidePanel sidePanel2 = new MainViewSidePanel(main);
+		
+		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sidePanel, sidePanel2);
+		add(split, BorderLayout.CENTER);
+		
+	}
+}

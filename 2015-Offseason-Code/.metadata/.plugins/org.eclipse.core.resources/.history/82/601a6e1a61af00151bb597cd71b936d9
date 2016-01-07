@@ -1,0 +1,153 @@
+package com.team1640;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+public class ScoutMobile extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	
+	//State Variables
+	private int view;
+	
+	//Current Event
+	private Event currentEvent;
+	
+	//View States
+	private final int MATCH_VIEW = 0;
+	private final int TEAM_VIEW = 1;
+	
+	//Panels
+	public MatchView matchView;
+	public TeamView teamView;
+	
+	//Menu Bar
+	private MenuBar menuBar;
+	
+	//Scanning Frame
+	public QRScan qrScan;
+	
+	public static void main(String[] args) throws InterruptedException{
+		new ScoutMobile();
+	}
+	
+	private ScoutMobile() throws InterruptedException {
+		
+		// Set Frame Title
+		super("ScoutMobile Desktop");
+		
+		// Set Frame Properties
+		setProperties();
+		
+		currentEvent = new Event("Untitled");
+		
+		// Add elements
+		createMenuBar();
+		createView();
+		
+		// Refresh
+		refresh();
+	}
+	
+	private void setProperties() {
+		view = MATCH_VIEW;
+	
+		// Set Look and Feel
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}
+		catch (UnsupportedLookAndFeelException e) {}
+		catch (ClassNotFoundException e) {}
+		catch (InstantiationException e) {}
+		catch (IllegalAccessException e) {}
+		
+		// Set Other Properties
+		setVisible(true);
+		setSize(800, 600);
+		setExtendedState(MAXIMIZED_BOTH);
+		setResizable(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setIconImage(new ImageIcon("img/icon.png").getImage());
+	}
+	
+	private void createMenuBar() {
+		if (menuBar == null) menuBar = new MenuBar(this);
+		setJMenuBar(menuBar);
+	}
+	
+	private void createView() {
+		if (matchView == null) matchView = new MatchView(this);
+		if (teamView == null) teamView = new TeamView(this);
+		if (view == TEAM_VIEW) {
+			getContentPane().add(teamView);
+		} else if (view == MATCH_VIEW){
+			getContentPane().add(matchView);
+		}
+	}
+	
+	private void refresh() {
+		revalidate();
+		repaint();
+	}
+
+	public void switchViews() {
+		// Switch views
+		if (view == TEAM_VIEW) { 		//Team View
+			view = MATCH_VIEW;
+			getContentPane().remove(teamView);
+			getContentPane().add(matchView);
+		}
+		else if (view == MATCH_VIEW) { 	//Match View
+			view = TEAM_VIEW;
+			getContentPane().remove(matchView);
+			getContentPane().add(teamView);
+		}
+		refresh();
+	}
+	
+	public void startScanning() {
+		if (qrScan == null) {
+			qrScan = new QRScan(this);
+			qrScan.init();
+		}
+		else if(qrScan.closed) qrScan.init();
+	}
+	
+	public Event getEvent() {
+		return currentEvent;
+	}
+	
+	public void setEvent(Event event) {
+		currentEvent = event;
+	}
+	
+	public void updateMatchListModel(int numOfMatches) {
+		matchView.matchViewSidePanel.matchViewListModel.clear();
+		matchView.matchViewMainPanel.matchViewTableModel.setRowCount(0);
+		for (int i = 0; i < numOfMatches; i++) {
+			matchView.matchViewSidePanel.matchViewListModel.addElement("Match " + Integer.toString(i+1));
+			for (int j = 0; j < 4; j++) {
+				Object [] rowData = new Object[6];
+				String color;
+				switch(j) {
+				case 0: color = "Red 1"; break;
+				case 1: color = "Red 2"; break;
+				case 2: color = "Red 3"; break;
+				case 3: color = "Blue 1"; break;
+				case 4: color = "Blue 2"; break;
+				case 5: color = "Blue 3"; break;
+				default: color = "Red 1"; break;
+				}
+				rowData[0] = color;
+				rowData[1] = currentEvent.getMatch(i).getData(j).get(0);
+				rowData[2] = currentEvent.getMatch(i).getData(j).get(1);
+				rowData[3] = currentEvent.getMatch(i).getData(j).get(2);
+				rowData[4] = currentEvent.getMatch(i).getData(j).get(3);
+				rowData[5] = currentEvent.getMatch(i).getData(j).get(4);
+				matchView.matchViewMainPanel.matchViewTableModel.addRow(rowData);
+			}
+		}
+	}
+}

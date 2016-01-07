@@ -1,0 +1,12 @@
+package com.team1640;
+
+public class WebcamCapture implements Runnable{
+
+	@Override
+	public void run() {
+		while(true) {
+			System.out.println("scanning...");
+		}
+	}
+	
+}

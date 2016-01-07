@@ -1,0 +1,9 @@
+package com.team1640;
+
+import java.util.ArrayList;
+
+public class MatchData {
+	private ArrayList<Object> data;
+	
+	
+}

@@ -1,0 +1,20 @@
+package com.team1640;
+
+import java.util.ArrayList;
+
+public class Match {
+	private int matchNum;
+	private ArrayList<Team> matchTeamList;
+	
+	public static final int RED_1 = 0;
+	public static final int
+	
+	public Match(int matchNum) {
+		this.matchNum = matchNum;
+		matchTeamList = new ArrayList<Team>(6);
+	}
+	
+	public int getMatchNum() {
+		return matchNum;
+	}
+}

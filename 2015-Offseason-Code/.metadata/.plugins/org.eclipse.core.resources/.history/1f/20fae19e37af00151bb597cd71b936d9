@@ -1,0 +1,30 @@
+package com.team1640;
+
+import java.util.ArrayList;
+
+public class Team {
+	private int teamNum;
+	private ArrayList<Match> teamMatchList;
+	
+	public Team() {
+		teamNum = 0;
+		teamMatchList = new ArrayList<Match>();
+	}
+	
+	public Team(int teamNum) {
+		this.teamNum = teamNum;
+		teamMatchList = new Team[6];
+	}
+	
+	public int getMatchNum() {
+		return teamNum;
+	}
+	
+	public void setTeam(Team team, int colorNum) {
+		teamMatchList[colorNum] = team;
+	}
+	
+	public void removeTeam(int colorNum) {
+		teamMatchList[colorNum] = new Team();
+	}
+}

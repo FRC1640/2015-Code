@@ -1,0 +1,110 @@
+package com.team1640;
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+public class Main extends JFrame implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
+	
+	public static void main(String[] args) {
+		new Main().setVisible(true);
+	}
+	
+	private Main() {
+		
+		super("ScoutMobile Desktop");
+		
+		try {
+			// Set System L&F
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (UnsupportedLookAndFeelException e) {
+		} catch (ClassNotFoundException e) {
+		} catch (InstantiationException e) {
+		} catch (IllegalAccessException e) {
+		}
+		
+		
+		setSize(800, 600);
+		setResizable(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLayout(new FlowLayout());
+		MatchView matchView = new MatchView();
+		add(matchView);
+		
+		createMenuBar();
+	}
+	
+	private void createMenuBar() {
+		JMenuBar menu = new JMenuBar();
+		
+		JMenu menuFile = new JMenu("File");
+	
+			JMenuItem menuFileNew = new JMenuItem("New");
+			menuFileNew.addActionListener(this);
+	
+			JMenuItem menuFileExit = new JMenuItem("Exit");
+			menuFileExit.addActionListener(this);
+		
+		JMenu menuEdit = new JMenu("Edit");
+
+			JMenuItem menuEditCopy = new JMenuItem("Copy");
+			menuEditCopy.addActionListener(this);
+
+			JMenuItem menuEditPaste = new JMenuItem("Paste");
+			menuEditPaste.addActionListener(this);
+
+		JMenu menuView = new JMenu("View");
+
+			JMenuItem menuViewSwitchViews = new JMenuItem("Switch Views");
+			menuViewSwitchViews.addActionListener(this);
+				
+		add(menuFile);
+		menuFile.add(menuFileNew);
+		menuFile.add(menuFileExit);
+
+		add(menuEdit);
+		menuEdit.add(menuEditCopy);
+		menuEdit.add(menuEditPaste);
+
+		add(menuView);
+		menuView.add(menuViewSwitchViews);
+
+		menu.add(menuFile);
+		menu.add(menuEdit);
+		menu.add(menuView);
+
+
+				
+		setJMenuBar(menu);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		String name = event.getActionCommand();
+		
+		if (name.equals("New")) {
+			//event
+		} else if (name.equals("Exit")) {
+			System.exit(0);
+		} else if (name.equals("Copy")) {
+			//copy
+		} else if (name.equals("Paste")) {
+			//paste
+		} else if (name.equals("Switch Views")) {
+			//switch views
+		} else {
+			//cry
+		}
+	}
+}

@@ -1,0 +1,10 @@
+1448209725742	Rename type 'ScanWindow'
+1448215066290	Rename type 'WebcamCapture'
+1448219122634	Move compilation units
+1448219251717	Move compilation units
+1448219256188	Delete element
+1448219746738	Rename field 'scanWindow'
+1448251881323	Rename type 'SMParameter'
+1448252592427	Rename type 'SMCategory'
+1448253780008	Rename field 'contents'
+1448340489432	Rename local variable 'dbConnection'

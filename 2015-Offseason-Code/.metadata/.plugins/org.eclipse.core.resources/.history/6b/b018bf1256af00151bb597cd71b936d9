@@ -1,0 +1,205 @@
+package com.team1640;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+public class SidePanel extends JPanel implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
+	
+	private ScoutMobile main;
+	
+	private DefaultListModel<String> matchViewListModel;
+	private JList<String> matchViewList;
+	private JScrollPane matchViewScrollPane;
+	private JPanel matchViewListPanel;
+	private JButton addMatchButton;
+	private JButton insertMatchButton;
+	private JButton removeMatchButton;
+
+	public SidePanel(ScoutMobile m) {
+		
+		main = m;
+		
+		setBackground(new Color(64, 64, 128));
+		setPreferredSize(new Dimension(480,0));
+		setLayout(new GridBagLayout());
+		
+		matchViewListModel = new DefaultListModel<String>();
+		
+		matchViewList = new JList<String>(matchViewListModel);
+		
+		matchViewScrollPane = new JScrollPane(matchViewList);
+		
+		GridBagConstraints c = new GridBagConstraints();
+		GridBagConstraints c2 = new GridBagConstraints();
+		
+		matchViewListPanel = new JPanel();
+		
+		addMatchButton = new JButton("Add Match");
+		addMatchButton.addActionListener(this);
+		addMatchButton.setIcon(new ImageIcon("img/add.png"));
+		addMatchButton.setIconTextGap(25);
+		addMatchButton.setBackground(new Color(160, 160, 192));
+		addMatchButton.setToolTipText("Add Match to End");
+		
+		insertMatchButton = new JButton("Insert Match");
+		insertMatchButton.addActionListener(this);
+		insertMatchButton.setIcon(new ImageIcon("img/insert.png"));
+		insertMatchButton.setIconTextGap(25);
+		insertMatchButton.setBackground(new Color(160, 160, 192));
+		addMatchButton.setToolTipText("Insert Match at Selected Index");
+		
+		removeMatchButton = new JButton("Remove Match");
+		removeMatchButton.addActionListener(this);
+		removeMatchButton.setIcon(new ImageIcon("img/remove.png"));
+		removeMatchButton.setIconTextGap(25);
+		removeMatchButton.setBackground(new Color(160, 160, 192));
+		removeMatchButton.setToolTipText("Remove Selected Match");
+		
+		matchViewListPanel.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
+		matchViewListPanel.setLayout(new GridBagLayout());
+		matchViewListPanel.setBackground(new Color(64, 64, 128));
+		matchViewListPanel.setMaximumSize(new Dimension(380, 80));
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.WEST;
+		c.insets = new Insets(5, 5, 5, 5);
+		c.gridx = 0;
+		c.gridy = 0;
+		c.weightx = 0.33;
+		c.weighty = 1.0;
+		matchViewListPanel.add(addMatchButton, c);
+		
+		c.gridx = 1;
+		c.gridy = 0;
+		c.weightx = 0.33;
+		c.weighty = 1.0;
+		matchViewListPanel.add(insertMatchButton, c);
+		
+		c.gridx = 2;
+		c.gridy = 0;
+		c.weightx = 0.33;
+		c.weighty = 1.0;
+		matchViewListPanel.add(removeMatchButton, c);
+		
+		c2.fill = GridBagConstraints.HORIZONTAL;
+		c2.anchor = GridBagConstraints.SOUTH;
+		c2.gridx = 0;
+		c2.gridy = 0;
+		c2.weightx = 1.0;
+		c2.weighty = 0.01;
+		add(matchViewListPanel, c2);
+		
+		c2.fill = GridBagConstraints.BOTH;
+		c2.anchor = GridBagConstraints.FIRST_LINE_START;
+		c2.gridx = 0;
+		c2.gridy = 1;
+		c2.weightx = 1.0;
+		c2.weighty = 0.9;
+		add(matchViewScrollPane, c2);
+	}
+	
+	private void updateMatchListModel(int numOfMatches) {
+		matchViewListModel.clear();
+		for (int i = 1; i <= numOfMatches; i++) {
+			matchViewListModel.addElement("Match " + i);
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		String name = event.getActionCommand();
+		Event currentEvent = main.getEvent();
+		
+		if (name.equals("Add Match")) {
+			
+			MatchData matchDataR1 = new MatchData();
+			matchDataR1.set(1640, MatchData.TEAM_NUM);
+			matchDataR1.set(2, MatchData.CANS);
+			matchDataR1.set(16, MatchData.TOTES);
+			matchDataR1.set(true, MatchData.IS_PRESENT);
+			matchDataR1.set("Matt", MatchData.SCOUT_NAME);
+			
+			MatchData matchDataR2 = new MatchData();
+			matchDataR2.set(225, MatchData.TEAM_NUM);
+			matchDataR2.set(3, MatchData.CANS);
+			matchDataR2.set(17, MatchData.TOTES);
+			matchDataR2.set(true, MatchData.IS_PRESENT);
+			matchDataR2.set("Vineeth", MatchData.SCOUT_NAME);
+			
+			MatchData matchDataR3 = new MatchData();
+			matchDataR3.set(1080, MatchData.TEAM_NUM);
+			matchDataR3.set(0, MatchData.CANS);
+			matchDataR3.set(0, MatchData.TOTES);
+			matchDataR3.set(false, MatchData.IS_PRESENT);
+			matchDataR3.set("Matt", MatchData.SCOUT_NAME);
+			
+			MatchData matchDataB1 = new MatchData();
+			matchDataB1.set(1640, MatchData.TEAM_NUM);
+			matchDataB1.set(2, MatchData.CANS);
+			matchDataB1.set(16, MatchData.TOTES);
+			matchDataB1.set(true, MatchData.IS_PRESENT);
+			matchDataB1.set("Matt", MatchData.SCOUT_NAME);
+			
+			Match newMatch = new Match(currentEvent.numOfMatches());
+			newMatch.setData(Match.RED_1, matchDataR1);
+			newMatch.setData(Match.RED_2, matchDataR2);
+			newMatch.setData(Match.RED_3, matchDataR3);
+			newMatch.setData(Match.BLUE_1, matchDataB1);
+			
+			currentEvent.addMatch(newMatch);
+			updateMatchListModel(currentEvent.numOfMatches());
+			
+			int size = matchViewListModel.size();
+			matchViewListModel.addElement("Match " + Integer.toString(size));
+			matchViewList.setSelectedIndex(size);
+			matchViewList.ensureIndexIsVisible(size);
+			main.startScanning();
+		}
+		else if (name.equals("Insert Match")) {
+			int selected = matchViewList.getSelectedIndex();
+			if (selected >= 0) {
+				int size = matchViewListModel.size();
+				matchViewListModel.add(selected, "Match " + Integer.toString(selected));
+				matchViewList.setSelectedIndex(selected);
+				matchViewList.ensureIndexIsVisible(selected);
+				for (int i = selected; i <= size; i++) {
+					matchViewListModel.setElementAt("Match " + Integer.toString(i+1), i);
+				}
+				main.startScanning();
+			}
+		}
+		else if (name.equals("Remove Match")) {
+			int selected = matchViewList.getSelectedIndex();
+			if (selected >= 0) {
+				matchViewListModel.remove(selected);
+				matchViewList.setSelectedIndex(selected-1);
+				matchViewList.ensureIndexIsVisible(selected-1);
+				int size = matchViewListModel.getSize();
+				for (int i = selected; i < size; i++) {
+					matchViewListModel.setElementAt("Match " + Integer.toString(i+1), i);
+				}
+			}
+		}
+		else if (name.equals("Match List")) {
+			System.out.println(matchViewList.getSelectedValue());
+		}
+	}
+	
+	
+}

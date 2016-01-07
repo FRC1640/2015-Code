@@ -1,0 +1,22 @@
+package com.team1640;
+
+import org.opencv.core.Mat;
+import org.opencv.videoio.VideoCapture;
+
+public class WebcamCapture implements Runnable{
+
+	@Override
+	public void run() {
+		System.loadLibrary("opencv-300");
+
+		VideoCapture camera = new VideoCapture(0);
+		camera.open(0);
+
+		Mat frame = new Mat();
+
+		camera.read(frame);
+
+		System.out.println("Captured Frame Width " + frame.width());
+	}
+	
+}

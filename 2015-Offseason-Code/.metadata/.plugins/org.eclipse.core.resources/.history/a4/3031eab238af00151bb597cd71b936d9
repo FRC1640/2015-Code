@@ -1,0 +1,15 @@
+package com.team1640;
+
+import java.util.ArrayList;
+
+public class MatchList {
+	private ArrayList<Match> matches;
+	
+	public void addMatch(Match match) {
+		matches.add(match);
+	}
+	
+	public void insertMatch(Match match, int matchNum) {
+		matches.add(matchNum, match);
+	}
+}

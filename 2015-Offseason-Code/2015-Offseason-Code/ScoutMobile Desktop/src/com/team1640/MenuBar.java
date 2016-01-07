@@ -1,0 +1,81 @@
+package com.team1640;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+public class MenuBar extends JMenuBar implements ActionListener{
+	
+	private static final long serialVersionUID = 1L;
+	
+	private ScoutMobile main;
+	
+	public MenuBar(ScoutMobile m) {
+		
+		main = m;
+		
+	// FILE MENU
+		JMenu menuFile = new JMenu("File");
+	
+		JMenuItem menuFileNew = new JMenuItem("New");
+		menuFileNew.addActionListener(this);
+	
+		JMenuItem menuFileExit = new JMenuItem("Exit");
+		menuFileExit.addActionListener(this);
+		
+	// EDIT MENU
+		JMenu menuEdit = new JMenu("Edit");
+
+		JMenuItem menuEditCopy = new JMenuItem("Copy");
+		menuEditCopy.addActionListener(this);
+
+		JMenuItem menuEditPaste = new JMenuItem("Paste");
+		menuEditPaste.addActionListener(this);
+		
+	// VIEW MENU
+		JMenu menuView = new JMenu("View");
+
+		JMenuItem menuViewSwitchViews = new JMenuItem("Switch Views");
+		menuViewSwitchViews.addActionListener(this);
+		
+		// Add elements
+		add(menuFile);
+		menuFile.add(menuFileNew);
+		menuFile.add(menuFileExit);
+
+		add(menuEdit);
+		menuEdit.add(menuEditCopy);
+		menuEdit.add(menuEditPaste);
+
+		add(menuView);
+		menuView.add(menuViewSwitchViews);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		String name = event.getActionCommand();
+		
+		//FILE MENU
+		if (name.equals("New")) {
+			//new
+		} else if (name.equals("Exit")) {
+			System.exit(0);
+		}
+			
+	//EDIT MENU
+		else if (name.equals("Copy")) {
+			//copy
+		} else if (name.equals("Paste")) {
+			//paste
+		}
+			
+	//VIEW MENU
+		else if (name.equals("Switch Views")) {
+			main.switchViews();
+		}
+	}
+
+}

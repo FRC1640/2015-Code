@@ -1,0 +1,14 @@
+package com.team1640;
+
+public class WebcamCapture implements Runnable{
+	
+	private boolean killed;
+
+	@Override
+	public void run() {
+		while(true) {
+			System.out.println("hello");
+		}
+	}
+	
+}

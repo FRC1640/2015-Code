@@ -1,0 +1,78 @@
+package com.team1640;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class MatchViewMainPanel extends JPanel implements ActionListener{
+	
+	private static final long serialVersionUID = 1L;
+	
+	private Main main;
+	
+	private JTable table;
+	private DefaultTableModel model;
+	private JLabel label;
+	
+	public MatchViewMainPanel(Main m){
+		
+		main = m;
+		
+		label =  new JLabel(getLabel());
+		
+		table = new JTable(model);
+		
+		model = new DefaultTableModel();
+		
+		Integer[] teamData = getTeamData();
+		model.addColumn("Team", teamData);
+		String[] colorData = getColorData();
+		model.addColumn("Color", colorData);
+		Integer[] canData = getCanData();
+		model.addColumn("Cans", canData);
+		Integer[] toteData = getToteData();
+		model.addColumn("Totes", toteData);
+		
+		add(table);
+	}
+
+	public static Integer[] getTeamData(){
+		Integer[] teamData = {1640, 225, 341, 2056, 1114, 319};
+		// TODO get data from QR code
+		return teamData;
+	}
+	
+	public static String[] getColorData(){
+		String[] colorData = {"Red", "Red", "Red", "Blue", "Blue", "Blue"};
+		// TODO get data from QR code
+		return colorData;
+	}
+	
+	public static Integer[] getCanData(){
+		Integer[] canData = {1, 23, 56, 43, 1, 3};
+		// TODO get data from QR code
+		return canData;
+	}
+	
+	public static Integer[] getToteData(){
+		Integer[] toteData = {54, 1, 32, 4, 1, 59};
+		// TODO get data from QR code
+		return toteData;
+	}
+	
+	public static String getLabel(){
+		String match = "Match 1";
+		// TODO get match number
+		return match;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+}

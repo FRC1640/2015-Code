@@ -1,0 +1,35 @@
+package com.team1640;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+
+public class MatchView extends JPanel implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
+
+	public MatchView() {
+		
+		setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
+		setLayout(new BorderLayout(5, 5));
+		
+		MainViewSidePanel sidePanel = new MainViewSidePanel();
+		sidePanel.setMinimumSize(new Dimension(0, 0));
+		MainViewSidePanel sidePanel2 = new MainViewSidePanel();
+		
+		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sidePanel, sidePanel2);
+		add(split, BorderLayout.CENTER);
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		String name = event.getActionCommand();
+		
+	}
+}

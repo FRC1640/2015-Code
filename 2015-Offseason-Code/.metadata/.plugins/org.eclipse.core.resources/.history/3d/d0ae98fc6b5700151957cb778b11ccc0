@@ -1,0 +1,57 @@
+package com.team1640;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class MatchViewMainPanel extends JPanel implements ActionListener{
+	
+	private static final long serialVersionUID = 1L;
+	
+	private Main main;
+	
+	private DefaultTableModel matchModel;
+	private JTable matchTable;
+	private int matchNum = 0;
+	private JLabel matchTitle;
+	private final Object [] columnNames = {"Color", "Team", "Cans", "Totes", "No Show?", "Scout"};
+	private JScrollPane scrollPane;
+	
+	public MatchViewMainPanel(Main m){
+		
+		main = m;
+		
+		matchTitle =  new JLabel("Match" + Integer.toString(matchNum));
+		
+		int columns = columnNames.length;
+		
+		matchModel = new DefaultTableModel(new Object[0][columns], columnNames);
+		
+		matchTable = new JTable(matchModel);
+		
+		scrollPane = new JScrollPane(matchTable);
+		
+		add(scrollPane);
+		
+		
+	}
+
+	public void addRow(MatchTableRow rowData) {
+		matchModel.addRow(rowData.getRow());
+	}
+	
+	public void setMatchNum(int matchNum) {
+		this.matchNum = matchNum;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+}

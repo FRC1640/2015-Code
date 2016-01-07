@@ -1,0 +1,12 @@
+package com.team1640;
+
+import java.awt.Color;
+
+import javax.swing.JPanel;
+
+public class MainViewSidePanel extends JPanel{
+	public MainViewSidePanel() {
+		setBackground(new Color(220, 220, 220));
+		//setSize(500, 500);
+	}
+}

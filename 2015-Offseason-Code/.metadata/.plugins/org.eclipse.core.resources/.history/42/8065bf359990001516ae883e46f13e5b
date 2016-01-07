@@ -1,0 +1,57 @@
+package com.team1640;
+
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfByte;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.videoio.VideoCapture;
+import org.opencv.videoio.Videoio;
+
+public class WebcamCapture implements Runnable{
+	
+	ScoutMobile main;
+	
+	WebcamCapture(ScoutMobile main) {
+		this.main = main;
+	}
+
+	@Override
+	public void run() {
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+
+		Mat m = new Mat();
+		MatOfByte mb = new MatOfByte();
+		BufferedImage img;
+		
+		VideoCapture camera = new VideoCapture(0);
+		camera.set(Videoio.CV_CAP_PROP_FRAME_WIDTH, main.getWidth());
+		camera.set(Videoio.CV_CAP_PROP_FRAME_HEIGHT, main.getHeight());	
+		
+		boolean closed = false;
+		while(!closed) {
+			if (camera.grab()) {
+				camera.read(m);
+				Imgcodecs.imencode(".png", m, mb);
+				try {
+					img = ImageIO.read(new ByteArrayInputStream(mb.toArray()));
+					main.scanWindow.displayCapture(img);
+				} catch (IOException e) {}
+				try {Thread.sleep(20);}
+				catch (InterruptedException e) {}
+			}
+		}
+		
+		camera.release();
+		camera = null;
+		img = null;
+		m = null;
+		mb = null;
+	}
+	
+}

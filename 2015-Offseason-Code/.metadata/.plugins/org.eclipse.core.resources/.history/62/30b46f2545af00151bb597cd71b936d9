@@ -1,0 +1,31 @@
+package com.team1640;
+
+import java.util.ArrayList;
+
+public class MatchList {
+	private ArrayList<Match> matches;
+	
+	public Match getMatch(int matchNum) {
+		Match matches.get(matchNum);
+	}
+	
+	public void addMatch(Match match) {
+		matches.add(match);
+	}
+	
+	public void insertMatch(Match match, int matchNum) {
+		matches.add(matchNum-1, match);
+	}
+	
+	public void setMatch(Match match, int matchNum) {
+		matches.set(matchNum-1, match);
+	}
+	
+	public void removeMatch(int matchNum) {
+		matches.remove(matchNum-1);
+	}
+	
+	public int numOfMatches() {
+		return matches.size();
+	}
+}

@@ -1,0 +1,79 @@
+package com.team1640;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+public class Main extends JFrame implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
+	
+	private boolean viewToggle = false;
+	
+	private MatchView matchView = new MatchView();
+	private TeamView teamView = new TeamView();
+	
+	public static Main main;
+	
+	public static void main(String[] args) {
+		main = new Main();
+	}
+	
+	private Main() {
+		
+		// Set frame title
+		super("ScoutMobile Desktop");
+		
+		// Set the look and feel
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}
+		catch (UnsupportedLookAndFeelException e) {}
+		catch (ClassNotFoundException e) {}
+		catch (InstantiationException e) {}
+		catch (IllegalAccessException e) {}
+		
+		// Import icon
+		ImageIcon icon = new ImageIcon("ScoutMobile-2016-3.png");
+		
+		// Set frame properties
+		setVisible(true);
+		setSize(800, 600);
+		setExtendedState(MAXIMIZED_BOTH);
+		setResizable(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setIconImage(icon.getImage());
+		
+		// Add elements
+		createMenuBar();
+		createView();
+		
+		// Refresh
+		revalidate();
+		repaint();
+	}
+	
+	private void createMenuBar() {
+		MenuBar menuBar = new MenuBar();	
+		setJMenuBar(menuBar);
+	}
+	
+	private void createView() {
+		if (viewToggle) {
+			add(teamView);
+		} else {
+			add(matchView);
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		
+		//Store event name
+		String name = event.getActionCommand();
+	}
+}

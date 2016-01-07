@@ -1,0 +1,19 @@
+package com.team1640;
+
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class MatchView extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+
+	public MatchView() {
+		setLayout(new FlowLayout() );
+		
+		JButton button = new JButton("Button 1");
+		
+		add(button);
+}
+}

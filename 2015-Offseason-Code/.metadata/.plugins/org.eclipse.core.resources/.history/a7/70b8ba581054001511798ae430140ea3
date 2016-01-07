@@ -1,0 +1,91 @@
+package com.team1640;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+public class MainViewSidePanel extends JPanel implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
+	
+	private Main main;
+	
+	private DefaultListModel<String> matchListModel;
+	private JList<String> matchList;
+	private JScrollPane matchScrollPane;
+	private JPanel matchListPanel;
+	private JButton addMatch;
+
+	public MainViewSidePanel(Main m) {
+		
+		main = m;
+		
+		setBackground(new Color(64, 64, 128));
+		setPreferredSize(new Dimension(380,0));
+		setLayout(new GridBagLayout());
+		
+		matchListModel = new DefaultListModel<String>();
+		
+		matchList = new JList<String>(matchListModel);
+		
+		matchScrollPane = new JScrollPane(matchList);
+		
+		GridBagConstraints c = new GridBagConstraints();
+		
+		matchListPanel = new JPanel();
+		
+		addMatch = new JButton("Add Match");
+		addMatch.addActionListener(this);
+		addMatch.setBackground(new Color(160, 160, 192));
+		
+		matchListPanel.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
+		matchListPanel.setLayout(new BorderLayout());
+		matchListPanel.setBackground(new Color(64, 64, 128));
+		matchListPanel.setMaximumSize(new Dimension(380, 80));
+		
+		matchListPanel.add(addMatch, BorderLayout.EAST);
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.SOUTH;
+		c.gridx = 0;
+		c.gridy = 0;
+		c.weightx = 1.0;
+		c.weighty = 0.01;
+		add(matchListPanel, c);
+		
+		c.fill = GridBagConstraints.BOTH;
+		c.anchor = GridBagConstraints.FIRST_LINE_START;
+		c.gridx = 0;
+		c.gridy = 1;
+		c.weightx = 1.0;
+		c.weighty = 0.9;
+		add(matchScrollPane, c);
+	}
+	
+	public DefaultListModel<String> getMatchListModel() {
+		return matchListModel;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		String name = event.getActionCommand();
+		
+		if (name.equals("Add Match")) {
+			int size = matchListModel.getSize();
+			matchListModel.addElement("Match " + Integer.toString(size+1));
+			matchList.setSelectedIndex(size);
+			matchList.ensureIndexIsVisible(size);
+		}
+	}
+}

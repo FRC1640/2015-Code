@@ -1,0 +1,5 @@
+package com.team1640;
+
+public class MatchTableFormat {
+	private String color;
+}

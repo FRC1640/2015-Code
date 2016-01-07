@@ -1,0 +1,44 @@
+package com.team1640;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JPanel;
+
+public class MatchView extends JPanel implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
+
+	public MatchView() {
+		
+		GridBagLayout layout = new GridBagLayout();
+		setLayout(layout);
+		
+		GridBagConstraints c = new GridBagConstraints();
+		
+		MainViewSidePanel sidePanel;
+		for (int row = 0; row < 10; row++) {
+			for (int col = 0; col < 10; col++) {
+				sidePanel = new MainViewSidePanel(row+col);
+				c.gridx = col;
+				c.gridy = row;
+				layout.setConstraints(sidePanel, c);
+				add(sidePanel);
+			}
+		}
+		
+		
+}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		String name = event.getActionCommand();
+		
+		if (name.equals("Button 1")) {
+			System.exit(0);
+		}
+		
+	}
+}

@@ -1,0 +1,21 @@
+package com.team1640;
+
+public class TeamData {
+	private Object[] data;
+	
+	public static final int COLOR_NUM = 0, TEAM_NUM = 1, CANS = 2, TOTES = 3; // Customize data here
+	
+	public TeamData(int colorNum, int matchNum) {
+		data = new Object[4];
+		data[COLOR_NUM] = colorNum;
+		data[TEAM_NUM] = 0;
+	}
+	
+	public void set(Object element, int type) {
+			data[type] = element;
+	}
+	
+	public void remove(int type) {
+			data[type] = null;
+	}
+}

@@ -1,0 +1,26 @@
+package com.team1640;
+
+public class MatchData {
+	private Object[] data;
+	
+	private final int COLOR_NUM = 0, TEAM_NUM = 1;
+	public static final int CANS = 2, TOTES = 3; // Customize data here
+	
+	public MatchData(int colorNum, int teamNum) {
+		data = new Object[4];
+		data[COLOR_NUM] = colorNum;
+		data[TEAM_NUM] = teamNum;
+	}
+	
+	public void set(Object element, int type) {
+		if (type != COLOR_NUM && type != TEAM_NUM) {
+			data[type] = element;
+		}
+	}
+	
+	public void remove(int type) {
+		if (type != COLOR_NUM && type != TEAM_NUM) {
+			data[type] = null;
+		}
+	}
+}

@@ -1,0 +1,9 @@
+1451509433859	Rename field 'matches'
+1451509446072	Rename local variable 'matchNum'
+1451509965584	Rename type 'Data'
+1451512188759	Rename field 'teamMatchList'
+1451513340507	Delete element
+1451513343059	Delete element
+1451513345290	Delete element
+1451516989122	Rename type 'MatchViewMainPanel'
+1451517010866	Rename type 'MatchViewSidePanel'

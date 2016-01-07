@@ -1,0 +1,7 @@
+package com.team1640;
+
+import javax.swing.JFrame;
+
+public class ScanWindow extends JFrame{
+
+}

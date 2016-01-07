@@ -1,0 +1,27 @@
+package com.team1640;
+
+import java.util.ArrayList;
+
+public class TeamList {
+	private ArrayList<Team> teams;
+	
+	public Team getTeam(int teamNum) {
+		return teams.get(teamNum);
+	}
+	
+	public void addMatch(Team team) {
+		teams.add(team);
+	}
+	
+	public void insertMatch(Team team, int teamNum) {
+		teams.add(teamNum-1, team);
+	}
+	
+	public void setMatch(Team team, int teamNum) {
+		teams.set(teamNum-1, team);
+	}
+	
+	public void removeMatch(int teamNum) {
+		teams.remove(teamNum-1);
+	}
+}

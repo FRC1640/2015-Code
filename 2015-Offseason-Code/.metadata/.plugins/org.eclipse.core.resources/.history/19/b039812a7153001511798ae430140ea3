@@ -1,0 +1,58 @@
+package com.team1640;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+public class MainViewSidePanel extends JPanel{
+
+	private static final long serialVersionUID = 1L;
+
+	public MainViewSidePanel() {
+		setBackground(new Color(220, 220, 220));
+		setPreferredSize(new Dimension(380,0));
+		setLayout(new GridBagLayout());
+		
+		DefaultListModel<String> matchListModel = new DefaultListModel<String>();
+		matchListModel.addElement("Match 1");
+		matchListModel.addElement("Match 2");
+		
+		JList<String> matchList = new JList<String>(matchListModel);
+		
+		JScrollPane scroll = new JScrollPane(matchList);
+		
+		GridBagConstraints c = new GridBagConstraints();
+		
+		JPanel matchListButtons = new JPanel();
+		
+		JButton addMatch = new JButton("Add Match");
+		
+		matchListButtons.setLayout(new BorderLayout());
+		matchListButtons.setMaximumSize(new Dimension(380, 50));
+		
+		matchListButtons.add(addMatch, BorderLayout.EAST);
+		
+		c.fill = GridBagConstraints.BOTH;
+		c.anchor = GridBagConstraints.FIRST_LINE_START;
+		c.gridx = 0;
+		c.gridy = 0;
+		c.weightx = 1.0;
+		c.weighty = 0.7;
+		add(scroll, c);
+		
+		c.fill = GridBagConstraints.BOTH;
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1.0;
+		c.weighty = 0.1;
+		add(matchListButtons, c);
+	}
+}

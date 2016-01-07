@@ -1,0 +1,55 @@
+package com.team1640;
+
+public class Event {
+	
+	private String name = "Untitled";
+	
+	private MatchList matchList;
+	private TeamList teamList;
+	
+	private final int ERROR_EVENT_FILE_NOT_FOUND = 0;
+	private final int ERROR_DATABASE_CONNECTION_NOT_FOUND = 1;
+	
+	public Event(String name) {
+		this.name = name;
+		matchList = new MatchList();
+		teamList = new TeamList();
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public MatchList getMatches() {
+		return matchList;
+	}
+	
+	public TeamList getTeams() {
+		return teamList;
+	}
+	
+	public void save() {
+		
+	}
+	
+	public void open() {
+		displayError(ERROR_EVENT_FILE_NOT_FOUND);
+	}
+	
+	private void displayError(int errorId) {
+		System.out.println("Event Error");
+		if (errorId == ERROR_EVENT_FILE_NOT_FOUND) {
+			System.out.println("-Event File Not Found");
+		}
+		else if (errorId == ERROR_DATABASE_CONNECTION_NOT_FOUND) {
+			System.out.println("-Database Connection Not Found");
+		}
+		else {
+			System.out.println("-Unknown Error");
+		}
+	}
+}

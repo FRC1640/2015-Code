@@ -1,0 +1,124 @@
+package com.team1640;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+public class Main extends JFrame implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
+	
+	private final boolean MATCH_VIEW = false;
+	private final boolean TEAM_VIEW = true;
+	private boolean viewToggle = MATCH_VIEW;
+	
+	private MatchView matchView = new MatchView();
+	private TeamView teamView = new TeamView();
+	
+	public static void main(String[] args) {
+		new Main().setVisible(true);
+	}
+	
+	private Main() {
+		
+		super("ScoutMobile Desktop");
+		
+		try {
+			// Set System L&F
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (UnsupportedLookAndFeelException e) {
+		} catch (ClassNotFoundException e) {
+		} catch (InstantiationException e) {
+		} catch (IllegalAccessException e) {
+		}
+		
+		setSize(800, 600);
+		setExtendedState(MAXIMIZED_BOTH);
+		setResizable(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLayout(new BorderLayout() );
+		
+		createMenuBar();
+	}
+	
+	private void createMenuBar() {
+		JMenuBar menu = new JMenuBar();
+		
+		JMenu menuFile = new JMenu("File");
+	
+			JMenuItem menuFileNew = new JMenuItem("New");
+			menuFileNew.addActionListener(this);
+	
+			JMenuItem menuFileExit = new JMenuItem("Exit");
+			menuFileExit.addActionListener(this);
+		
+		JMenu menuEdit = new JMenu("Edit");
+
+			JMenuItem menuEditCopy = new JMenuItem("Copy");
+			menuEditCopy.addActionListener(this);
+
+			JMenuItem menuEditPaste = new JMenuItem("Paste");
+			menuEditPaste.addActionListener(this);
+
+		JMenu menuView = new JMenu("View");
+
+			JMenuItem menuViewSwitchViews = new JMenuItem("Switch Views");
+			menuViewSwitchViews.addActionListener(this);
+				
+		add(menuFile);
+		menuFile.add(menuFileNew);
+		menuFile.add(menuFileExit);
+
+		add(menuEdit);
+		menuEdit.add(menuEditCopy);
+		menuEdit.add(menuEditPaste);
+
+		add(menuView);
+		menuView.add(menuViewSwitchViews);
+
+		menu.add(menuFile);
+		menu.add(menuEdit);
+		menu.add(menuView);
+
+		add(matchView, BorderLayout.WEST);
+				
+		setJMenuBar(menu);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		String name = event.getActionCommand();
+		
+		if (name.equals("New")) {
+			//event
+		} else if (name.equals("Exit")) {
+			System.exit(0);
+		} else if (name.equals("Copy")) {
+			//copy
+		} else if (name.equals("Paste")) {
+			//paste
+		} else if (name.equals("Switch Views")) {
+			//switch views
+			if (viewToggle) {
+				viewToggle = MATCH_VIEW;
+				remove(teamView);
+				add(matchView);
+			} else {
+				viewToggle = TEAM_VIEW;
+				remove(matchView);
+				add(teamView);
+			}
+			revalidate();
+			repaint();
+		} else {
+			//cry
+		}
+	}
+}

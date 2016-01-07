@@ -1,0 +1,40 @@
+package com.team1640;
+
+import org.opencv.core.Mat;
+import org.opencv.videoio.VideoCapture;
+
+public class WebcamCapture implements Runnable{
+
+	@Override
+	public void run() {
+			  System.loadLibrary("opencv-300.jar");
+
+			    VideoCapture camera = new VideoCapture(0);
+			    camera.open(0); //Useless
+			    if(!camera.isOpened()){
+			        System.out.println("Camera Error");
+			    }
+			    else{
+			        System.out.println("Camera OK?");
+			    }
+
+			    Mat frame = new Mat();
+
+			    //camera.grab();
+			    //System.out.println("Frame Grabbed");
+			    //camera.retrieve(frame);
+			    //System.out.println("Frame Decoded");
+
+			    camera.read(frame);
+			    System.out.println("Frame Obtained");
+
+			    /* No difference
+			    camera.release();
+			    */
+
+			    System.out.println("Captured Frame Width " + frame.width());
+
+			    System.out.println("OK");
+	}
+	
+}

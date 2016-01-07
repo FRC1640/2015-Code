@@ -1,0 +1,61 @@
+package com.team1640;
+
+import java.awt.image.BufferedImage;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+public class ScanWindow extends JFrame{
+
+	private static final long serialVersionUID = 1L;
+	
+	ScoutMobile main;
+	
+	public ScanWindow(ScoutMobile main) {
+		super("Scan QR Code");
+		
+		this.main = main;
+		
+		setProperties();
+		
+		refresh();
+		
+		startCapture();
+	}
+	
+	private void setProperties() {
+	
+		// Set Look and Feel
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}
+		catch (UnsupportedLookAndFeelException e) {}
+		catch (ClassNotFoundException e) {}
+		catch (InstantiationException e) {}
+		catch (IllegalAccessException e) {}
+		
+		// Set Other Properties
+		setVisible(true);
+		setSize(800, 600);
+		setResizable(true);
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
+		setIconImage(new ImageIcon("img/icon.png").getImage());
+	}
+	
+	private void refresh() {
+		revalidate();
+		repaint();
+	}
+	
+	private void startCapture() {
+		Thread qrCapture = new Thread(new WebcamCapture());
+		qrCapture.start();
+	}
+	
+	public void displayCapture(BufferedImage img) {
+		
+	}
+
+}
